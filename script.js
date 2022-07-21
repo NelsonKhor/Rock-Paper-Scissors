@@ -1,9 +1,10 @@
 /*
 * Functions:
 *   1. getPlayerChoice()
-*   2. getComputerChoice())
-*   3. game()
+*   2. getComputerChoice()
+*   3. compareSelection()
 *   4. playRound()
+*   5. game()
 *   
 * Parameters:
 *   1. playerSelection
@@ -36,10 +37,8 @@ Ask player to start game or exit
 Exit program
 */
 
-playRound();
-
 // Function: Generate Computer's Choice
-function getComputedChoice() {
+function getComputerChoice() {
     let randomNumber = Math.floor(Math.random()*3);
     if (randomNumber === 0) {
         return 'ROCK';
@@ -95,7 +94,7 @@ function playRound() {
         // Ask Player's Choice
         let playerSelection = prompt("Rock, Paper, or Scissors?").toUpperCase();
         // Generate Computer's Choice
-        let computerSelection = getComputedChoice();
+        let computerSelection = getComputerChoice();
         // Compare Choices
         let result = compareSelection(playerSelection, computerSelection);
         if (result === "playerWin"){
@@ -115,5 +114,7 @@ function playRound() {
 
 // Function: Start the game
 function game() {
-
+    if (confirm("Play a round of 5? Make sure you have opened the \"Console\"")){
+        playRound();
+    }
 }
