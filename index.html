@@ -9,13 +9,20 @@
     <title>Odin Project: Rock Paper Scissors</title>
 </head>
 <body>
-    <div>
-        To play, right Click anywhere on the white page, select "Inspect", then select "Console". <br>
-        Click the button bellow whenever you're ready! :)
+    <div id="instruction">
+        Press the button to start game!
+        <button id="startGame">Start game</button>
     </div>
-    <button onclick="game()">Start game</button>
-    <button id="rock" class="choice">✊</button>
-    <button id="paper" class="choice">✋</button>
-    <button id="scissor" class="choice">✌</button>
+    <div id="choiceButtons">
+        <button id="rock" class="choice">✊</button>
+        <button id="paper" class="choice">✋</button>
+        <button id="scissor" class="choice">✌</button>
+    </div>
+    <div id="scoreboard">
+        scoreboard
+        <div id="playerScore">player score</div>
+        <div id="computerScore">computer score</div>
+    </div>
+
 </body>
 </html>
