@@ -116,6 +116,26 @@ function playRound() {
 function game() {
     playRound();
 }
+
+// Function: Assign player selection value
+function playerChooseRock() {
+    console.log(`You chose ${rockButton.value}`);
+}
+function playerChoosePaper() {
+    console.log(`You chose ${paperButton.value}`);
+}
+function playerChooseScissors() {
+    console.log(`You chose ${scissorsButton.value}`);
+}
+
 // DOM: Click to start game
 const startButton = document.querySelector('#startGame');
 startButton.addEventListener('click',game);
+
+// DOM: Player click to choose choices
+const rockButton = document.querySelector('#rock');
+const paperButton = document.querySelector('#paper');
+const scissorsButton = document.querySelector('#scissors');
+rockButton.addEventListener('click', playerChooseRock);
+paperButton.addEventListener('click', playerChoosePaper);
+scissorsButton.addEventListener('click', playerChooseScissors);
