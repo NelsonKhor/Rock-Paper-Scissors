@@ -114,7 +114,8 @@ function playRound() {
 
 // Function: Start the game
 function game() {
-    if (confirm("Play a round of 5? Make sure you have opened the \"Console\"")){
-        playRound();
-    }
+    playRound();
 }
+// DOM: Click to start game
+const startButton = document.querySelector('#startGame');
+startButton.addEventListener('click',game);
