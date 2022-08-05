@@ -37,6 +37,63 @@ Ask player to start game or exit
 Exit program
 */
 
+// DOM: Player click to choose choices
+
+const rockButton = document.querySelector('#rock');
+const paperButton = document.querySelector('#paper');
+const scissorsButton = document.querySelector('#scissors');
+
+rockButton.addEventListener('click', playerChooseRock);
+paperButton.addEventListener('click', playerChoosePaper);
+scissorsButton.addEventListener('click', playerChooseScissors);
+
+let count = 0;
+let playerWon = 0;
+let computerWon = 0;
+
+// DOM Function: Assign player selection value
+function playerChooseRock(e) {
+    let playerChoice = e.target.value;
+    let compChoice = getComputerChoice();
+    let result = compareSelection(playerChoice,compChoice);
+    if (result === "playerWin") {
+        playerWon++;
+    }
+    if (result === "computerWin") {
+        computerWon++;
+    }
+    count++;
+    console.log(`Count = ${count}; Player = ${playerWon}; Computer = ${computerWon}`);
+}
+
+function playerChoosePaper(e) {
+    let playerChoice = e.target.value;
+    let compChoice = getComputerChoice();
+    let result = compareSelection(playerChoice,compChoice);
+    if (result === "playerWin") {
+        playerWon++;
+    }
+    if (result === "computerWin") {
+        computerWon++;
+    }
+    count++;
+    console.log(`Count = ${count}; Player = ${playerWon}; Computer = ${computerWon}`);
+}
+
+function playerChooseScissors(e) {
+    let playerChoice = e.target.value;
+    let compChoice = getComputerChoice();
+    let result = compareSelection(playerChoice,compChoice);
+    if (result === "playerWin") {
+        playerWon++;
+    }
+    if (result === "computerWin") {
+        computerWon++;
+    }
+    count++;
+    console.log(`Count = ${count}; Player = ${playerWon}; Computer = ${computerWon}`);
+}
+
 // Function: Generate Computer's Choice
 function getComputerChoice() {
     let randomNumber = Math.floor(Math.random()*3);
@@ -85,57 +142,3 @@ function compareSelection(player, computer) {
     // invalid comparison
     console.log("INVALID INPUT: CHOOSE BETWEEN ROCK, PAPER, AND SCISSOR");
 }
-
-// Function: Start the round
-function playRound() {
-    let playerScore = 0;
-    let computerScore = 0;
-    while((playerScore < 5) && (computerScore < 5)) {
-        // Ask Player's Choice
-        let playerSelection = prompt("Rock, Paper, or Scissors?").toUpperCase();
-        // Generate Computer's Choice
-        let computerSelection = getComputerChoice();
-        // Compare Choices
-        let result = compareSelection(playerSelection, computerSelection);
-        if (result === "playerWin"){
-            playerScore++;
-        }
-        if (result === "computerWin"){
-            computerScore++;
-        }
-        console.log(`Player: ${playerScore}; Computer: ${computerScore}`);
-    }
-    if (playerScore > computerScore) {
-        console.log("You Win!");
-    } else {
-        console.log("You Lose!");
-    }
-}
-
-// Function: Start the game
-function game() {
-    playRound();
-}
-
-// Function: Assign player selection value
-function playerChooseRock() {
-    console.log(`You chose ${rockButton.value}`);
-}
-function playerChoosePaper() {
-    console.log(`You chose ${paperButton.value}`);
-}
-function playerChooseScissors() {
-    console.log(`You chose ${scissorsButton.value}`);
-}
-
-// DOM: Click to start game
-const startButton = document.querySelector('#startGame');
-startButton.addEventListener('click',game);
-
-// DOM: Player click to choose choices
-const rockButton = document.querySelector('#rock');
-const paperButton = document.querySelector('#paper');
-const scissorsButton = document.querySelector('#scissors');
-rockButton.addEventListener('click', playerChooseRock);
-paperButton.addEventListener('click', playerChoosePaper);
-scissorsButton.addEventListener('click', playerChooseScissors);
