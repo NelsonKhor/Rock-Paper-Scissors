@@ -1,17 +1,4 @@
 /*
-* Functions:
-*   1. getPlayerChoice()
-*   2. getComputerChoice()
-*   3. compareSelection()
-*   4. playRound()
-*   5. game()
-*   
-* Parameters:
-*   1. playerSelection
-*   2. computerSelection
-*/
-
-/*
 Pseudocode:
 Start game
 Ask player to start game or exit
@@ -37,21 +24,32 @@ Ask player to start game or exit
 Exit program
 */
 
-// DOM: Player click to choose choices
+// DOM Buttons Initialization
 
 const rockButton = document.querySelector('#rock');
 const paperButton = document.querySelector('#paper');
 const scissorsButton = document.querySelector('#scissors');
 const playerScore = document.querySelector('#playerScore');
 const computerScore = document.querySelector('#computerScore');
+const resetButton = document.querySelector('#resetButton');
 
 rockButton.addEventListener('click', playerChooseRock);
 paperButton.addEventListener('click', playerChoosePaper);
 scissorsButton.addEventListener('click', playerChooseScissors);
+resetButton.addEventListener('click', resetRound);
 
 let count = 0;
 let playerWon = 0;
 let computerWon = 0;
+
+// DOM Function: Reset rounds
+function resetRound() {
+    playerScore.textContent = 0;
+    playerWon = 0;
+    computerScore.textContent = 0;
+    computerWon = 0;
+    count = 0;
+}
 
 // DOM Function: Assign player selection value
 function playerChooseRock(e) {
