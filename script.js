@@ -42,6 +42,8 @@ Exit program
 const rockButton = document.querySelector('#rock');
 const paperButton = document.querySelector('#paper');
 const scissorsButton = document.querySelector('#scissors');
+const playerScore = document.querySelector('#playerScore');
+const computerScore = document.querySelector('#computerScore');
 
 rockButton.addEventListener('click', playerChooseRock);
 paperButton.addEventListener('click', playerChoosePaper);
@@ -58,9 +60,11 @@ function playerChooseRock(e) {
     let result = compareSelection(playerChoice,compChoice);
     if (result === "playerWin") {
         playerWon++;
+        playerScore.textContent = playerWon;
     }
     if (result === "computerWin") {
         computerWon++;
+        computerScore.textContent = computerWon;
     }
     count++;
     console.log(`Count = ${count}; Player = ${playerWon}; Computer = ${computerWon}`);
@@ -72,9 +76,11 @@ function playerChoosePaper(e) {
     let result = compareSelection(playerChoice,compChoice);
     if (result === "playerWin") {
         playerWon++;
+        playerScore.textContent = playerWon;
     }
     if (result === "computerWin") {
         computerWon++;
+        computerScore.textContent = computerWon;
     }
     count++;
     console.log(`Count = ${count}; Player = ${playerWon}; Computer = ${computerWon}`);
@@ -86,9 +92,11 @@ function playerChooseScissors(e) {
     let result = compareSelection(playerChoice,compChoice);
     if (result === "playerWin") {
         playerWon++;
+        playerScore.textContent = playerWon;
     }
     if (result === "computerWin") {
         computerWon++;
+        computerScore.textContent = computerWon;
     }
     count++;
     console.log(`Count = ${count}; Player = ${playerWon}; Computer = ${computerWon}`);
