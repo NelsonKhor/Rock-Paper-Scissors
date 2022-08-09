@@ -1,17 +1,4 @@
 /*
-* Functions:
-*   1. getPlayerChoice()
-*   2. getComputerChoice()
-*   3. compareSelection()
-*   4. playRound()
-*   5. game()
-*   
-* Parameters:
-*   1. playerSelection
-*   2. computerSelection
-*/
-
-/*
 Pseudocode:
 Start game
 Ask player to start game or exit
@@ -37,6 +24,73 @@ Ask player to start game or exit
 Exit program
 */
 
+// DOM Buttons Initialization
+
+const announcement = document.querySelector('.announcement')
+const playerScore = document.querySelector('#playerScore');
+const computerScore = document.querySelector('#computerScore');
+const resetButton = document.querySelector('#resetButton');
+const buttonChoices = document.querySelectorAll('.choice');
+
+// Assign Event listener to buttons
+
+resetButton.addEventListener('click', resetRound);
+buttonChoices.forEach((button) => {
+    button.addEventListener('click', playerChooseThis);
+    button.style.visibility = "visible";
+});
+
+
+let count = 0;
+let playerWon = 0;
+let computerWon = 0;
+
+// DOM Function: Reset the Rounds
+function resetRound() {
+    playerScore.textContent = 0;
+    playerWon = 0;
+    computerScore.textContent = 0;
+    computerWon = 0;
+    count = 0;
+    buttonChoices.forEach((button) => {
+        button.style.visibility = "visible";
+    });
+}
+
+// Function: Check if either players won 5 rounds
+function checkRound(e) {
+    if (playerWon == 5) {
+        announcement.textContent = "Player Won!";
+        buttonChoices.forEach((button) => {
+            button.style.visibility = "hidden";
+        });
+    }
+    if (computerWon == 5) {
+        announcement.textContent = "Computer Won!"
+        buttonChoices.forEach((button) => {
+            button.style.visibility = "hidden";
+        });
+    }
+}
+
+// DOM Function: Assign Player Selection Choice(Value)
+function playerChooseThis(e) {
+    let playerChoice = e.target.value;
+    let compChoice = getComputerChoice();
+    let result = compareSelection(playerChoice,compChoice);
+    if (result === "playerWin") {
+        playerWon++;
+        playerScore.textContent = playerWon;
+    }
+    if (result === "computerWin") {
+        computerWon++;
+        computerScore.textContent = computerWon;
+    }
+    count++;
+    console.log(`Count = ${count}; Player = ${playerWon}; Computer = ${computerWon}`);
+    checkRound();
+}
+
 // Function: Generate Computer's Choice
 function getComputerChoice() {
     let randomNumber = Math.floor(Math.random()*3);
@@ -52,69 +106,36 @@ function getComputerChoice() {
 // Function: Compare Player and Computer Choices
 function compareSelection(player, computer) {
     if (player === computer) {
-        console.log(`IT'S A TIE! YOU BOTH CHOSE ${player}`);
+        announcement.textContent = `IT'S A TIE! YOU BOTH CHOSE ${player}`;
         return "tie";
     }
     if (player === "ROCK") {
         if (computer === "SCISSORS") {
-            console.log(`YOU WIN! ${player} BEATS ${computer}`);
+            announcement.textContent = `YOU WIN! ${player} BEATS ${computer}`;
             return "playerWin";
         } else {
-            console.log(`YOU LOSE! ${computer} BEATS ${player}`);
+            announcement.textContent = `YOU LOSE! ${computer} BEATS ${player}`;
             return "computerWin"
         }
     }
     if (player === "PAPER") {
         if (computer === "ROCK") {
-            console.log(`YOU WIN! ${player} BEATS ${computer}`);
+            announcement.textContent = `YOU WIN! ${player} BEATS ${computer}`;
             return "playerWin";
         } else {
-            console.log(`YOU LOSE! ${computer} BEATS ${player}`);
+            announcement.textContent = `YOU LOSE! ${computer} BEATS ${player}`;
             return "computerWin"
         }
     }
     if (player === "SCISSORS") {
         if (computer === "PAPER") {
-            console.log(`YOU WIN! ${player} BEATS ${computer}`);
+            announcement.textContent = `YOU WIN! ${player} BEATS ${computer}`;
             return "playerWin";
         } else {
-            console.log(`YOU LOSE! ${computer} BEATS ${player}`);
+            announcement.textContent = `YOU LOSE! ${computer} BEATS ${player}`;
             return "computerWin"
         }
     }
     // invalid comparison
     console.log("INVALID INPUT: CHOOSE BETWEEN ROCK, PAPER, AND SCISSOR");
-}
-
-// Function: Start the round
-function playRound() {
-    let playerScore = 0;
-    let computerScore = 0;
-    while((playerScore < 5) && (computerScore < 5)) {
-        // Ask Player's Choice
-        let playerSelection = prompt("Rock, Paper, or Scissors?").toUpperCase();
-        // Generate Computer's Choice
-        let computerSelection = getComputerChoice();
-        // Compare Choices
-        let result = compareSelection(playerSelection, computerSelection);
-        if (result === "playerWin"){
-            playerScore++;
-        }
-        if (result === "computerWin"){
-            computerScore++;
-        }
-        console.log(`Player: ${playerScore}; Computer: ${computerScore}`);
-    }
-    if (playerScore > computerScore) {
-        console.log("You Win!");
-    } else {
-        console.log("You Lose!");
-    }
-}
-
-// Function: Start the game
-function game() {
-    if (confirm("Play a round of 5? Make sure you have opened the \"Console\"")){
-        playRound();
-    }
 }

@@ -5,12 +5,39 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
+    <script src="./script.js" defer></script>
     <title>Odin Project: Rock Paper Scissors</title>
 </head>
 <body>
-    To play, right Click anywhere on the white page, select "Inspect", then select "Console". <br>
-    Click the button bellow whenever you're ready! :) <br>
-    <button onclick="game()">Start game</button>
-    <script src="./script.js"></script>
+    <div id="instruction">
+        Pick your choice to start game!
+    </div>
+    <div id="choiceButtons">
+        <button id="rock" class="choice" value="ROCK">✊</button>
+        <button id="paper" class="choice" value="PAPER">✋</button>
+        <button id="scissors" class="choice" value="SCISSORS">✌</button>
+    </div>
+    <div class="scoreboard-wrapper">
+        scoreboard
+        <div class="announcement">
+            
+        </div>
+        <div id="playerScoreboard">
+            Player
+            <div id="playerScore">
+                0
+            </div>
+        </div>
+        <div id="computerScoreboard">
+            Computer
+            <div id="computerScore">
+                0
+            </div>
+        </div>
+    </div>
+    <div id="reset-wrapper">
+        <button id="resetButton">Reset Game</button>
+    </div>
+
 </body>
 </html>
