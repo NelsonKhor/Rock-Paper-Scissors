@@ -26,16 +26,15 @@ Exit program
 
 // DOM Buttons Initialization
 
-const rockButton = document.querySelector('#rock');
-const paperButton = document.querySelector('#paper');
-const scissorsButton = document.querySelector('#scissors');
 const playerScore = document.querySelector('#playerScore');
 const computerScore = document.querySelector('#computerScore');
 const resetButton = document.querySelector('#resetButton');
 
-rockButton.addEventListener('click', playerChooseRock);
-paperButton.addEventListener('click', playerChoosePaper);
-scissorsButton.addEventListener('click', playerChooseScissors);
+const buttonChoices = document.querySelectorAll('.choice');
+
+buttonChoices.forEach((button) => {
+    button.addEventListener('click', playerChooseThis);
+});
 resetButton.addEventListener('click', resetRound);
 
 let count = 0;
@@ -51,40 +50,10 @@ function resetRound() {
     count = 0;
 }
 
+// Function: check if either player have 5 rounds
+
 // DOM Function: Assign player selection value
-function playerChooseRock(e) {
-    let playerChoice = e.target.value;
-    let compChoice = getComputerChoice();
-    let result = compareSelection(playerChoice,compChoice);
-    if (result === "playerWin") {
-        playerWon++;
-        playerScore.textContent = playerWon;
-    }
-    if (result === "computerWin") {
-        computerWon++;
-        computerScore.textContent = computerWon;
-    }
-    count++;
-    console.log(`Count = ${count}; Player = ${playerWon}; Computer = ${computerWon}`);
-}
-
-function playerChoosePaper(e) {
-    let playerChoice = e.target.value;
-    let compChoice = getComputerChoice();
-    let result = compareSelection(playerChoice,compChoice);
-    if (result === "playerWin") {
-        playerWon++;
-        playerScore.textContent = playerWon;
-    }
-    if (result === "computerWin") {
-        computerWon++;
-        computerScore.textContent = computerWon;
-    }
-    count++;
-    console.log(`Count = ${count}; Player = ${playerWon}; Computer = ${computerWon}`);
-}
-
-function playerChooseScissors(e) {
+function playerChooseThis(e) {
     let playerChoice = e.target.value;
     let compChoice = getComputerChoice();
     let result = compareSelection(playerChoice,compChoice);
