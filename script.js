@@ -32,11 +32,12 @@ const computerScore = document.querySelector('#computerScore');
 const resetButton = document.querySelector('#resetButton');
 const buttonChoices = document.querySelectorAll('.choice');
 
-// Assign event listener to buttons
+// Assign Event listener to buttons
 
 resetButton.addEventListener('click', resetRound);
 buttonChoices.forEach((button) => {
     button.addEventListener('click', playerChooseThis);
+    button.style.visibility = "visible";
 });
 
 
@@ -44,27 +45,35 @@ let count = 0;
 let playerWon = 0;
 let computerWon = 0;
 
-// DOM Function: Reset rounds
+// DOM Function: Reset the Rounds
 function resetRound() {
     playerScore.textContent = 0;
     playerWon = 0;
     computerScore.textContent = 0;
     computerWon = 0;
     count = 0;
+    buttonChoices.forEach((button) => {
+        button.style.visibility = "visible";
+    });
 }
 
-// Function: check if either player have 5 rounds
-function checkRound() {
+// Function: Check if either players won 5 rounds
+function checkRound(e) {
     if (playerWon == 5) {
         announcement.textContent = "Player Won!";
+        buttonChoices.forEach((button) => {
+            button.style.visibility = "hidden";
+        });
     }
     if (computerWon == 5) {
         announcement.textContent = "Computer Won!"
+        buttonChoices.forEach((button) => {
+            button.style.visibility = "hidden";
+        });
     }
-    
 }
 
-// DOM Function: Assign player selection value
+// DOM Function: Assign Player Selection Choice(Value)
 function playerChooseThis(e) {
     let playerChoice = e.target.value;
     let compChoice = getComputerChoice();
