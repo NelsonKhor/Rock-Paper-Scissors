@@ -26,16 +26,19 @@ Exit program
 
 // DOM Buttons Initialization
 
+const announcement = document.querySelector('.announcement')
 const playerScore = document.querySelector('#playerScore');
 const computerScore = document.querySelector('#computerScore');
 const resetButton = document.querySelector('#resetButton');
-
 const buttonChoices = document.querySelectorAll('.choice');
 
+// Assign event listener to buttons
+
+resetButton.addEventListener('click', resetRound);
 buttonChoices.forEach((button) => {
     button.addEventListener('click', playerChooseThis);
 });
-resetButton.addEventListener('click', resetRound);
+
 
 let count = 0;
 let playerWon = 0;
@@ -51,6 +54,15 @@ function resetRound() {
 }
 
 // Function: check if either player have 5 rounds
+function checkRound() {
+    if (playerWon == 5) {
+        announcement.textContent = "Player Won!";
+    }
+    if (computerWon == 5) {
+        announcement.textContent = "Computer Won!"
+    }
+    
+}
 
 // DOM Function: Assign player selection value
 function playerChooseThis(e) {
@@ -67,6 +79,7 @@ function playerChooseThis(e) {
     }
     count++;
     console.log(`Count = ${count}; Player = ${playerWon}; Computer = ${computerWon}`);
+    checkRound();
 }
 
 // Function: Generate Computer's Choice
@@ -84,33 +97,33 @@ function getComputerChoice() {
 // Function: Compare Player and Computer Choices
 function compareSelection(player, computer) {
     if (player === computer) {
-        console.log(`IT'S A TIE! YOU BOTH CHOSE ${player}`);
+        announcement.textContent = `IT'S A TIE! YOU BOTH CHOSE ${player}`;
         return "tie";
     }
     if (player === "ROCK") {
         if (computer === "SCISSORS") {
-            console.log(`YOU WIN! ${player} BEATS ${computer}`);
+            announcement.textContent = `YOU WIN! ${player} BEATS ${computer}`;
             return "playerWin";
         } else {
-            console.log(`YOU LOSE! ${computer} BEATS ${player}`);
+            announcement.textContent = `YOU LOSE! ${computer} BEATS ${player}`;
             return "computerWin"
         }
     }
     if (player === "PAPER") {
         if (computer === "ROCK") {
-            console.log(`YOU WIN! ${player} BEATS ${computer}`);
+            announcement.textContent = `YOU WIN! ${player} BEATS ${computer}`;
             return "playerWin";
         } else {
-            console.log(`YOU LOSE! ${computer} BEATS ${player}`);
+            announcement.textContent = `YOU LOSE! ${computer} BEATS ${player}`;
             return "computerWin"
         }
     }
     if (player === "SCISSORS") {
         if (computer === "PAPER") {
-            console.log(`YOU WIN! ${player} BEATS ${computer}`);
+            announcement.textContent = `YOU WIN! ${player} BEATS ${computer}`;
             return "playerWin";
         } else {
-            console.log(`YOU LOSE! ${computer} BEATS ${player}`);
+            announcement.textContent = `YOU LOSE! ${computer} BEATS ${player}`;
             return "computerWin"
         }
     }
