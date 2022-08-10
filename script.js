@@ -25,18 +25,19 @@ function resetRound() {
     buttonChoices.forEach((button) => {
         button.style.visibility = "visible";
     });
+    announcement.textContent = ""
 }
 
 // Function: Check if either players won 5 rounds
 function checkRound() {
     if (playerWon == 5) {
-        announcement.textContent = "Player Won!";
+        announcement.textContent = "Player Won! Click 'Reset' Button to play again!";
         buttonChoices.forEach((button) => {
             button.style.visibility = "hidden";
         });
     }
     if (computerWon == 5) {
-        announcement.textContent = "Computer Won!"
+        announcement.textContent = "Computer Won! Click 'Reset' Button to play again!"
         buttonChoices.forEach((button) => {
             button.style.visibility = "hidden";
         });
