@@ -1,47 +1,18 @@
-/*
-Pseudocode:
-Start game
-Ask player to start game or exit
-    if Start game
-        Initialize scores
-        Start round
-            Ask player to make a choice
-            Generate a computer choice
-            Compare player choice with computer choice
-            if player wins
-                player score + 1
-            else if computer wins
-                computer score + 1
-            else tie
-                do nothing
-            if player's score or computer's score is 5
-                announce winner
-                Exit round
-            else
-                Repeat round
-    else
-        Exit game
-Exit program
-*/
-
-// DOM Buttons Initialization
-
+// Declare DOM Buttons
 const announcement = document.querySelector('.announcement')
 const playerScore = document.querySelector('#playerScore');
 const computerScore = document.querySelector('#computerScore');
 const resetButton = document.querySelector('#resetButton');
 const buttonChoices = document.querySelectorAll('.choice');
 
-// Assign Event listener to buttons
-
+// Assign Event listener to each buttons
 resetButton.addEventListener('click', resetRound);
 buttonChoices.forEach((button) => {
     button.addEventListener('click', playerChooseThis);
     button.style.visibility = "visible";
 });
 
-
-let count = 0;
+// Initialize Score
 let playerWon = 0;
 let computerWon = 0;
 
@@ -51,14 +22,13 @@ function resetRound() {
     playerWon = 0;
     computerScore.textContent = 0;
     computerWon = 0;
-    count = 0;
     buttonChoices.forEach((button) => {
         button.style.visibility = "visible";
     });
 }
 
 // Function: Check if either players won 5 rounds
-function checkRound(e) {
+function checkRound() {
     if (playerWon == 5) {
         announcement.textContent = "Player Won!";
         buttonChoices.forEach((button) => {
@@ -73,7 +43,7 @@ function checkRound(e) {
     }
 }
 
-// DOM Function: Assign Player Selection Choice(Value)
+// DOM Function: Assign Player Selected Choice(Value)
 function playerChooseThis(e) {
     let playerChoice = e.target.value;
     let compChoice = getComputerChoice();
@@ -86,8 +56,6 @@ function playerChooseThis(e) {
         computerWon++;
         computerScore.textContent = computerWon;
     }
-    count++;
-    console.log(`Count = ${count}; Player = ${playerWon}; Computer = ${computerWon}`);
     checkRound();
 }
 
@@ -136,6 +104,4 @@ function compareSelection(player, computer) {
             return "computerWin"
         }
     }
-    // invalid comparison
-    console.log("INVALID INPUT: CHOOSE BETWEEN ROCK, PAPER, AND SCISSOR");
 }
